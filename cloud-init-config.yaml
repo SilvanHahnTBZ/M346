@@ -1,0 +1,8 @@
+users:
+  - name: ubuntu
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQ6z2moYEvjg0LSRknbQWo9SJMR3rL4xIZgVgpBRG8kZXSEYZRztW4gq5DcVHQHfYwlfmbqrNZUXCupRmvuEAOtVzHZawbHdcDOPXu1tXR1Y7nyCkUbXM9noN5o+wpLsPcfidO2xxLaGAf2WFGrbYprQVVjhm9WEwym2FMBk9U/bD94aXQtOTgtclaSsTITTD2mzLteafwrtMd7Y2KFE2lo8oNDMLjD73Nd4aNjC4Nez1p8+muHAefgkeXtk1UfUyyDl37qDv972sYwmcWHqRxVzvpTxcmZAsmkiv1KFFeES8XnXkK+HwzfjRYPa+2M907XxYbps1s9BKGKeFOaJTJ aws-key
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    shell: /bin/bash
+
