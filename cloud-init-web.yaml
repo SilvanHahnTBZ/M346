@@ -1,0 +1,50 @@
+#cloud-config
+package_update: true
+packages:
+  - apache2
+  - php
+  - libapache2-mod-php
+  - php-mysqli
+  - adminer
+write_files:
+  - path: /var/www/html/info.php
+    content: |
+      <?php
+      // Show all information, defaults to INFO_ALL
+      phpinfo();
+      ?>
+  - path: /var/www/html/db.php
+    content: |
+      <html>
+      <head></head>
+      <body>
+      Diese Seite macht eine Abfrage auf die Datenbank. <br />
+      Das ausgeführte Query ist: <i>select Host, User from mysql.user;</i><br /><br />
+      Das Resultat: <br />
+      <?php
+              //database
+              $servername = "127.0.0.1";
+              $username = "admin";
+              $password = "SicheresPasswort"; # Bitte das tatsächliche Passwort eintragen
+              $dbname = "mysql";
+
+              // Create connection
+              $conn = new mysqli($servername, $username, $password, $dbname);
+              // Check connection
+              if ($conn->connect_error) {
+                      die("Connection failed: " . $conn->connect_error);
+              }
+
+              $sql = "select Host, User from mysql.user;";
+              $result = $conn->query($sql);
+              while($row = $result->fetch_assoc()){
+                      echo("<li>" . $row["Host"] . " / " . $row["User"] . "</li>");
+              }
+      ?>
+      </body>
+      </html>
+runcmd:
+  - sudo systemctl start apache2
+  - sudo systemctl enable apache2
+  - sudo a2enconf adminer
+  - sudo systemctl restart apache2

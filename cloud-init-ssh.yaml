@@ -1,0 +1,7 @@
+#cloud-config
+users:
+  - name: ubuntu
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ssh-rsa <Public-Key-1> Silvan1
+      - ssh-rsa <Public-Key-2> Silvan2
